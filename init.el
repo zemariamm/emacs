@@ -152,3 +152,11 @@
 ;(setq erlang-root-dir "/opt/local/var/macports/software/erlang/R12B-4_1/opt/local")
 ;(setq exec-path (cons "/opt/local/var/macports/software/erlang/R12B-4_1/opt/local/bin" exec-path))
 ;(require 'erlang-start)
+
+;load xml-rpc and JIRA
+
+;(load-file "~/.emacs.d/xml-rpc.el")
+;(load-file "~/.emacs.d/jira.el")
+
+;(load-file "~/.emacs.d/soap-client.el")
+;(load-file "~/.emacs.d/jira2.el")
