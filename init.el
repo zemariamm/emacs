@@ -5,7 +5,6 @@
 ;(scroll-bar-mode 0)
 ;(tool-bar-mode 0)
 
-
 ; set keyboard macros
 ; macro write the following
 ; (use :reload-all 'c3po.state.machine)
@@ -20,6 +19,9 @@
 ; load nxhtml
 (load "/Users/zemariamm/.emacs.d/nxhtml/autostart.el")
 
+; load haml
+(load "/Users/zemariamm/.emacs.d/haml.el")
+
 ;load magit
 (add-to-list 'load-path "/Users/zemariamm/.emacs.d/mainline")
 (require 'magit)
@@ -30,44 +32,51 @@
 
 ;load swank
 
-(setq swank-clojure-jar-path "/Users/zemariamm/clojure/clojure/clojure-slim.jar")
-(setq swank-clojure-extra-classpaths
-       (list "/Users/zemariamm/clojure/clojure-contrib/clojure-contrib-slim.jar" "/Users/zemariamm/workspace/clojure" "/Users/zemariamm/workspace/jars/"))
+;; (setq swank-clojure-jar-path "/Users/zemariamm/clojure/clojure/clojure-slim.jar")
+;; (setq swank-clojure-extra-classpaths
+;;        (list "/Users/zemariamm/clojure/clojure-contrib/clojure-contrib-slim.jar" "/Users/zemariamm/workspace/clojure" "/Users/zemariamm/workspace/jars/"))
 
-(setq swank-clojure-extra-vm-args (list "-server"
-					"-Xdebug"
-					"-Xss2048k"
-					"-agentlib:jdwp=transport=dt_socket,address=8888,server=y,suspend=n"
-					"-Djava.ext.dirs=/Users/zemariamm/workspace/jars:/System/Library/Java/Extensions"))
+;; (setq swank-clojure-extra-vm-args (list "-server"
+;; 					"-Xdebug"
+;; 					"-Xss2048k"
+;; 					"-agentlib:jdwp=transport=dt_socket,address=8888,server=y,suspend=n"
+;; 					"-Djava.ext.dirs=/Users/zemariamm/workspace/jars:/System/Library/Java/Extensions"))
 
-(add-to-list 'load-path "/Users/zemariamm/clojure/swank-clojure")
-(require 'swank-clojure-autoload)
-;; (load-file "/Users/zemariamm/clojure/swank-clojure/swank-clojure-autoload.el")
+;; (add-to-list 'load-path "/Users/zemariamm/clojure/swank-clojure")
+;; (require 'swank-clojure-autoload)
 
-(swank-clojure-config)
+
+;; (swank-clojure-config)
 
 ; load slime
-(add-to-list 'load-path "/Users/zemariamm/clojure/slime")
-;(setq inferior-lisp-program "java -server -cp /Users/zemariamm/clojure/clojure/clojure.jar clojure.lang.Repl")
-;(setq inferior-lisp-program "java clojure.lang.Repl")
+;; (add-to-list 'load-path "/Users/zemariamm/clojure/slime")
+;; ;(setq inferior-lisp-program "java -server -cp /Users/zemariamm/clojure/clojure/clojure.jar clojure.lang.Repl")
+;; ;(setq inferior-lisp-program "java clojure.lang.Repl")
 
+;; (require 'slime)
+;; (slime-setup)
+
+(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(require 'clojure-mode)
+
+(eval-after-load "slime" 
+  '(progn (slime-setup '(slime-repl))))
+
+(add-to-list 'load-path "~/.emacs.d/slime")
 (require 'slime)
 (slime-setup)
-
-(add-to-list 'load-path "~/.emacs.d/clojure")
-
+;(require 'swank-clojure)
 
 
-
-(require 'clojure-mode)
 ;; (load-file "~/.emacs.d/clojure/clojure-mode.el")
 ;; (autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 
-(defun slime-clojure ()
-  "Starts clojure in Slime"
-  (interactive)
-  (slime 'clojure))
+;; (defun slime-clojure ()
+;;   "Starts clojure in Slime"
+;;   (interactive)
+;;   (slime 'clojure))
+
 
 ;run psvn
 (load-file "~/.emacs.d/psvn.el") 
